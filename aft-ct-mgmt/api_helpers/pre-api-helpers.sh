@@ -4,6 +4,6 @@
 #
 
 echo "Executing Pre-API Helpers"
-LANDING_ZONE_ID=$(aws controltower list-landing-zones --query 'landingZones.arn' --output text)
+LANDING_ZONE_ID=$(aws controltower list-landing-zones --query 'landingZones[0].arn' --output text)
 
 export LANDING_ZONE_ID=$LANDING_ZONE_ID
