@@ -4,3 +4,5 @@
 #
 
 echo "Executing Pre-API Helpers"
+LANDING_ZONE_ID=$(aws controltower list-landing-zones --query 'landingZones[0].arn' --output text)
+aws ssm put-parameter --name "landingzone_id" --value $LANDING_ZONE_ID --type "String"
