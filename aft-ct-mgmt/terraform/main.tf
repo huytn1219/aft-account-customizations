@@ -5,5 +5,5 @@ resource "aws_controltower_landing_zone" "main" {
 
 import {
   to = aws_controltower_landing_zone.main
-  id = "${var.environment.LANDING_ZONE_ID}"
+  id = data.aws_ssm_parameter.landing_zone_id.value
 }
