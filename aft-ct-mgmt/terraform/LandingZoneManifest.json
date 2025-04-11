@@ -13,6 +13,7 @@
         }
     },
     "centralizedLogging": {
+         "accountId": "859060841143",
          "configurations": {
              "loggingBucket": {
                  "retentionDays": 365
