@@ -1,5 +1,9 @@
 {
-    "governedRegions": ["us-west-1", "us-west-2", "us-east-1"],
+    "governedRegions": [
+        "us-west-1", 
+        "us-west-2", 
+        "us-east-1"
+    ],
     "organizationStructure": {
         "security": {
             "name": "Security"
@@ -9,13 +13,12 @@
         }
     },
     "centralizedLogging": {
-         "accountId": "859060841143",
          "configurations": {
              "loggingBucket": {
-                 "retentionDays": "365"
+                 "retentionDays": 365
              },
              "accessLoggingBucket": {
-                 "retentionDays": "365"
+                 "retentionDays": 365
              }    
          },
          "enabled": true
