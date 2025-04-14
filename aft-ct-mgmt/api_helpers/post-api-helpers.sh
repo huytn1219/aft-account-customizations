@@ -87,16 +87,6 @@ for OU_ID in $OUS; do
   check_error "Failed to reset enabled baseline for OU $OU_ID"
 
   echo "Baseline reset successfully for OU $OU_ID"
-
-  # Re-register the OU with AWSControlTowerBaseline
-  echo "Re-registering OU $OU_ID with AWS Control Tower..."
-  aws controltower enable-baseline \
-    --baseline-identifier "$CONTROL_TOWER_BASELINE_ARN" \
-    --target-identifier "$OU_ARN" \
-    --baseline-version "$BASELINE_VERSION" 2>/dev/null
-  check_error "Failed to re-register OU $OU_ID"
-
-  echo "OU $OU_ID re-registered successfully"
 done
 
 echo "Script execution completed"
