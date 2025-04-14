@@ -16,10 +16,10 @@
          "accountId": "859060841143",
          "configurations": {
              "loggingBucket": {
-                 "retentionDays": 365
+                 "retentionDays": "365"
              },
              "accessLoggingBucket": {
-                 "retentionDays": 365
+                 "retentionDays": "365"
              }    
          },
          "enabled": true
