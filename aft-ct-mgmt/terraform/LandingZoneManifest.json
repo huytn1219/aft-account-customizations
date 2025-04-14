@@ -17,7 +17,7 @@
                  "retentionDays": 365
              },
              "accessLoggingBucket": {
-                 "retentionDays": 365
+                 "retentionDays": 3650
              }    
          },
          "enabled": true
