@@ -3,7 +3,7 @@ resource "aws_controltower_landing_zone" "main" {
   version       = "3.3"
 }
 
-#import {
-#  to = aws_controltower_landing_zone.main
-#  id = data.aws_ssm_parameter.landing_zone_id.value
-#}
+import {
+  to = aws_controltower_landing_zone.main
+  id = data.aws_ssm_parameter.landing_zone_id.value
+}
