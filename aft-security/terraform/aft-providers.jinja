@@ -28,15 +28,4 @@ provider "aws" {
   }
 }
 
-provider "aws" {
-  region = "{{ provider_region }}"
-  alias  = "log-archive-primary"
-  assume_role {
-    role_arn    = "arn:aws:iam::${data.aws_ssm_parameter.ct_log_archive_account_id.value}:role/AWSAFTExecution"
-  }
-  default_tags {
-    tags = {
-      managed_by = "AFT"
-    }
-  }
-}
+
