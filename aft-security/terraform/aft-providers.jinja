@@ -8,7 +8,35 @@ provider "aws" {
   }
   default_tags {
     tags = {
-      managed_by                  = "AFT"
+      managed_by = "AFT"
+    }
+  }
+}
+
+## Additional providers
+
+provider "aws" {
+  region = "{{ provider_region }}"
+  alias  = "aft-management"
+  assume_role {
+    role_arn    = "{{ aft_admin_role_arn }}"
+  }
+  default_tags {
+    tags = {
+      managed_by = "AFT"
+    }
+  }
+}
+
+provider "aws" {
+  region = "{{ provider_region }}"
+  alias  = "log-archive-primary"
+  assume_role {
+    role_arn    = "arn:aws:iam::${data.aws_ssm_parameter.ct_log_archive_account_id.value}:role/AWSAFTExecution"
+  }
+  default_tags {
+    tags = {
+      managed_by = "AFT"
     }
   }
 }
