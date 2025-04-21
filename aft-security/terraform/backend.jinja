@@ -23,9 +23,6 @@ terraform {
         workspaces {
         name = "{{ terraform_workspace_name }}"
         }
-        assume_role    = {
-      r   ole_arn  =  "{{ aft_admin_role_arn }}"
-    }
     }
 }
 {% endif %}
