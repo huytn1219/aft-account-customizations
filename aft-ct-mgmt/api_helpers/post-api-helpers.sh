@@ -88,7 +88,7 @@ for OU_ID in $OUS; do
   MAX_WAIT=120  # Maximum wait time: 120 iterations * 5 seconds = 10 minutes
   COUNT=0
   while true; do
-    STATUS=$(aws controltower get-enabled-baseline --enabled-baseline-identifier "$BASELINE_ARN" --query 'enabledBaseline.status' --output text)
+    STATUS=$(aws controltower get-enabled-baseline --enabled-baseline-identifier "$BASELINE_ARN" --query 'enabledBaselineDetails.statusSummary.status' --output text)
     if [ "$STATUS" == "SUCCEEDED" ] || [ "$STATUS" == "FAILED" ]; then
       echo "Baseline reset completed with status: $STATUS"
       break
