@@ -83,7 +83,26 @@ for OU_ID in $OUS; do
   echo "Resetting Enabled Baseline."
   aws controltower reset-enabled-baseline --enabled-baseline-identifier "$BASELINE_ARN"
 
-  echo "Baseline reset successfully for OU $OU_ID"
+  # Wait for the reset operation to complete
+  echo "Waiting for baseline reset to complete..."
+  MAX_WAIT=120  # Maximum wait time: 120 iterations * 5 seconds = 10 minutes
+  COUNT=0
+  while true; do
+    STATUS=$(aws controltower get-enabled-baseline --enabled-baseline-identifier "$BASELINE_ARN" --query 'enabledBaseline.status' --output text)
+    if [ "$STATUS" == "SUCCEEDED" ] || [ "$STATUS" == "FAILED" ]; then
+      echo "Baseline reset completed with status: $STATUS"
+      break
+    fi
+    if [ $COUNT -ge $MAX_WAIT ]; then
+      echo "Error: Timeout waiting for baseline reset to complete"
+      exit 1
+    fi
+    echo "Current status: $STATUS. Waiting..."
+    sleep 5
+    COUNT=$((COUNT + 1))
+  done
+
+  echo "Proceeding to next commands for OU $OU_ID"
 done
 
 echo "Script execution completed"
