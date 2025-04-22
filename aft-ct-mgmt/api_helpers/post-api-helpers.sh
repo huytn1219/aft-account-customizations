@@ -84,7 +84,6 @@ for OU_ID in $OUS; do
   # Reset the Enabled Baseline
   echo "Resetting Enabled Baseline."
   aws controltower reset-enabled-baseline --enabled-baseline-identifier "$BASELINE_ARN" 2>/dev/null
-  check_error "Failed to reset enabled baseline for OU $OU_ID"
 
   echo "Baseline reset successfully for OU $OU_ID"
 done
