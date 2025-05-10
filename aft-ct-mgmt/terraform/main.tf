@@ -7,14 +7,8 @@ resource "aws_controltower_landing_zone" "main" {
 resource "null_resource" "run_script" {
   provisioner "local-exec" {
     command = "./re-register-ous.sh"
-    environment = { BASELINE_VERSION = var.baseline_version }
   }
   depends_on = [aws_controltower_landing_zone.main]
-}
-
-variable baseline_version {
-  value       = "4.0"
-  description = "Baseline version of the Control Tower"
 }
 
 import {
