@@ -6,7 +6,7 @@ resource "aws_controltower_landing_zone" "main" {
 # Trigger OU re-registration process to update accounts
 resource "null_resource" "run_script" {
   provisioner "local-exec" {
-    command = "./re-register-ous.sh"
+    command  = file("${path.module}/re-register-ous.sh")
   }
   depends_on = [aws_controltower_landing_zone.main]
 }
