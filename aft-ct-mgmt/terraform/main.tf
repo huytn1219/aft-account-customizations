@@ -1,7 +1,7 @@
 locals {
   identifiers = {
       region = "us-west-1",
-      additional_regions = []
+      additional_regions = ["us-west-2"]
 }
 }
 
