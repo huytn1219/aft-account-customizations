@@ -11,13 +11,13 @@ locals {
 
 
 variable "log_retention_days" {
-     type = string
-     default = "365"
+     type = number
+     default = 365
 }
 
 variable "access_log_retention_days" {
-     type = string
-     default = "3650"
+     type = number
+     default = 3650
 }
 
 variable "landingzone_version" {
