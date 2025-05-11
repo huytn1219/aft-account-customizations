@@ -4,12 +4,16 @@ locals {
       additional_regions = []
 }
 
-variables "log_retention_days" {
+variable "log_retention_days" {
      value = 365
 }
 
-variables "access_log_retention_days" {
+variable "access_log_retention_days" {
      value = 3650
+}
+
+variable "landingzone_version" {
+     value = "3.3"
 }
 
 resource "aws_controltower_landing_zone" "main" {
