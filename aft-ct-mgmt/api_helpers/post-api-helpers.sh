@@ -16,7 +16,7 @@ echo "aws sts get-caller-identity"
 echo "---------------------"
 echo "---------------------"
 echo "---------------------Executing ./enable_ct_regions.py---------------------"
-python3 ./enable_ct_region.py
+python3 enable_ct_region.py
 echo "---------------------Done!---------------------"
 echo "---------------------"
 echo "---------------------"
