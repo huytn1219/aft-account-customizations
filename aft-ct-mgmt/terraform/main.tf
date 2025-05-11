@@ -2,17 +2,22 @@ locals {
   identifiers = {
       region = "us-west-1",
       additional_regions = []
-  }
-{
+}
+}
+
+# set variable for log_rentention_days
+# set a variable for log rentention days  
+
+
 
 variable "log_retention_days" {
      type = string
-     default = "3650"
+     default = "365"
 }
 
 variable "access_log_retention_days" {
      type = string
-     default = "365"
+     default = "3650"
 }
 
 variable "landingzone_version" {
@@ -32,7 +37,7 @@ resource "aws_controltower_landing_zone" "main" {
         }
       }
       centralizedLogging = {
-            accountId = data.aws_ssm_parameter.aft_logging_account_id.value
+            accountId = "859060841143"
             configurations = {
               loggingBucket = {
                 retentionDays = tostring(var.log_retention_days)
@@ -44,7 +49,7 @@ resource "aws_controltower_landing_zone" "main" {
             enabled = true
           }
           securityRoles = {
-            accountId = data.aws_ssm_parameter.aft_audit_account_id.value
+            accountId = "063511066488"
           }
           accessManagement = {
             enabled = false
@@ -64,12 +69,4 @@ resource "null_resource" "run_script" {
 import {
   to = aws_controltower_landing_zone.main
   id = data.aws_ssm_parameter.landing_zone_id.value
-}
-
-data "aws_ssm_parameter" "aft_audit_account_id" {
-  name = "/aft/account/audit/account-id"
-}
-
-data "aws_ssm_parameter" "aft_logging_account_id" {
-  name = "/aft/account/log-archive/account-id"
 }
