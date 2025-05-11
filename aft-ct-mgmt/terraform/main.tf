@@ -52,7 +52,7 @@ resource "aws_controltower_landing_zone" "main" {
             accountId = "063511066488"
           }
           accessManagement = {
-            enabled = false
+            enabled = true
           }
       })
   version       = var.landingzone_version
