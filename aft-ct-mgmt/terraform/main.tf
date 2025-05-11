@@ -40,10 +40,10 @@ resource "aws_controltower_landing_zone" "main" {
             accountId = "859060841143"
             configurations = {
               loggingBucket = {
-                retentionDays = tostring(var.log_retention_days)
+                retentionDays = var.log_retention_days
               }
               accessLoggingBucket = {
-                retentionDays = tostring(var.access_log_retention_days)
+                retentionDays = var.access_log_retention_days
               }
             }
             enabled = true
