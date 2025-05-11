@@ -1,19 +1,22 @@
 locals {
   identifiers = {
-      region = "us-west-1"
+      region = "us-west-1",
       additional_regions = []
 }
 
 variable "log_retention_days" {
-     value = 365
+     type = string
+     default = "3650"
 }
 
 variable "access_log_retention_days" {
-     value = 3650
+     type = string
+     default = "365"
 }
 
 variable "landingzone_version" {
-     value = "3.3"
+     type = string
+     default = "3.3"
 }
 
 resource "aws_controltower_landing_zone" "main" {
