@@ -2,7 +2,8 @@ locals {
   identifiers = {
       region = "us-west-1",
       additional_regions = []
-}
+  }
+{
 
 variable "log_retention_days" {
      type = string
