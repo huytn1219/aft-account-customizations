@@ -20,7 +20,7 @@ cd $DEFAULT_PATH/$CUSTOMIZATION/api_helpers/
 echo "---------------------Done!---------------------"
 echo "---------------------"
 echo "---------------------"
-echo "---------------------Executing ./enable_ct_region.py---------------------"
+echo "---------------------Executing ./enable_ct_regions.py---------------------"
 python3 ./enable_ct_region.py
 echo "---------------------Done!---------------------"
 echo "---------------------"
