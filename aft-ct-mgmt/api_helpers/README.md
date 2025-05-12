@@ -30,3 +30,32 @@ ous_to_skip:
 ```
 
 - **regions**: A list of AWS regions to enable in AWS Control Tower.
+- **ous_to_skip**: A list of OU names to skip during the re-registration process.
+Ensure that the config.yaml file is correctly formatted and contains the desired regions and OUs to skip.
+
+## Usage
+To run the script, execute the following command in the terminal:
+
+```bash
+python enable_ct_regions.py
+```
+
+Make sure that the `config.yaml` file is present in the same directory as the script and is properly configured.
+
+## Functionality
+
+### Enabling Regions
+- trieves the current AWS Control Tower landing zone configuration using the `controltower` client.
+- Identifies the single active landing zone (exits if none or multiple are found).
+- Compares the current governed regions with the desired regions from `config.yaml`.
+- Updates the landing zone manifest to reflect the desired regions by adding or removing regions as needed.
+- Monitors the update operation using the `get_landing_zone_operation` API, polling every 60 seconds until completion (success or failure).
+
+  ### Reregistering OUs
+- Retrieves all OUs in the AWS Organization using the organizations client, including nested OUs through recursive pagination.
+- Filters out OUs listed in ous_to_skip.
+- For each remaining OU:
+  -- Retrieves the OU's ARN and the ARN of its enabled baseline.
+  -- Initiates re-registration using the reset_enabled_baseline API.
+  -- Monitors the operation status using the get_baseline_operation API, polling every 60 seconds until completion (success or failure).
+- Processes OUs sequentially to avoid concurrency issues or rate limiting.
