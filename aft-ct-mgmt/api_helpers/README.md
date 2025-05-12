@@ -51,11 +51,11 @@ Make sure that the `config.yaml` file is present in the same directory as the sc
 - Updates the landing zone manifest to reflect the desired regions by adding or removing regions as needed.
 - Monitors the update operation using the `get_landing_zone_operation` API, polling every 60 seconds until completion (success or failure).
 
-  ### Reregistering OUs
+### Reregistering OUs
 - Retrieves all OUs in the AWS Organization using the organizations client, including nested OUs through recursive pagination.
 - Filters out OUs listed in ous_to_skip.
 - For each remaining OU:
-  -- Retrieves the OU's ARN and the ARN of its enabled baseline.
-  -- Initiates re-registration using the reset_enabled_baseline API.
-  -- Monitors the operation status using the get_baseline_operation API, polling every 60 seconds until completion (success or failure).
+  - Retrieves the OU's ARN and the ARN of its enabled baseline.
+  - Initiates re-registration using the reset_enabled_baseline API.
+  - Monitors the operation status using the get_baseline_operation API, polling every 60 seconds until completion (success or failure).
 - Processes OUs sequentially to avoid concurrency issues or rate limiting.
