@@ -56,6 +56,42 @@ Make sure that the `config.yaml` file is present in the same directory as the sc
 - Filters out OUs listed in ous_to_skip.
 - For each remaining OU:
   - Retrieves the OU's ARN and the ARN of its enabled baseline.
-  - Initiates re-registration using the reset_enabled_baseline API.
+  - Initiates re-registration using the `reset_enabled_baseline` API.
   - Monitors the operation status using the get_baseline_operation API, polling every 60 seconds until completion (success or failure).
 - Processes OUs sequentially to avoid concurrency issues or rate limiting.
+
+### Logging
+The script uses Python's `logging` module to provide detailed logs, including:
+
+- Information about regions and OUs being processed.
+- Status updates on landing zone updates and OU re-registrations.
+- Error messages for any issues encountered.
+Logs are output to the console with timestamps and log levels (INFO, WARNING, ERROR).
+
+### Error Handling
+The script handles errors gracefully by:
+- Logging error messages for failed API calls, missing configuration files, or parsing issues.
+- Skipping OUs that cannot be processed due to errors (e.g., missing ARN or baseline).
+- Exiting early if critical errors occur, such as failing to retrieve the landing zone or OUs.
+- Continuing execution if non-critical errors occur (e.g., a single OU fails to re-register).
+
+### Verification
+After running the script, verify the changes by:
+
+- Checking the AWS Control Tower console to confirm the enabled regions.
+- Using AWS CLI commands to list enabled baselines and verify OU re-registration:
+
+```bash
+aws controltower list-enabled-baselines
+```
+
+### Troubleshooting
+- **No regions specified**: If regions is empty in config.yaml, the script logs a warning and skips the region update step.
+- **OU not found or access denied**: Ensure AWS credentials have sufficient permissions.
+- **Operation timeouts**: The script polls every 60 seconds; adjust the time.sleep(60) value in the code if needed for longer operations.
+- **Multiple landing zones**: The script assumes a single landing zone; modify the script to handle multiple if required.
+
+### License
+Copyright Amazon.com, Inc. or its affiliates. All rights reserved.
+
+SPDX-License-Identifier: Apache-2.0
