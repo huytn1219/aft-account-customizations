@@ -27,5 +27,6 @@ regions:
 ous_to_skip:
   - Security
   - Infrastructure
+```
 
 - **regions**: A list of AWS regions to enable in AWS Control Tower.
