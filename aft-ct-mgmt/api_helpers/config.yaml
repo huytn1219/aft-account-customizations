@@ -1,3 +1,6 @@
 regions:
   - us-east-1
   - us-west-2
+ous_to_skip:
+  - "Root"
+  - "Security"
